@@ -1,0 +1,181 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+/* media */
+@media screen and (min-width: 992px) {    
+    .layoutSidebarCol{
+        width: 300px !important;
+    }
+    .layoutContentCol{
+        width: calc(100% - 300px) !important;
+    }
+}
+/* Handle mobile screen < 425 */
+@media screen and (max-width: 425px) {
+    .threeDotsVertical{
+        @apply max-[425px]:!w-[10px] max-[425px]:!h-3
+    }
+}
+
+/* Handle small screen < 300 */
+@media screen and (max-width: 300px) {
+    .text-3xl, .\!text-3xl{
+        @apply max-[300px]:!text-2xl
+    }
+    .text-2xl, .\!text-2xl{
+        @apply max-[300px]:!text-xl
+    }
+    .text-xl, .\!text-xl{
+        @apply max-[300px]:!text-lg
+    }
+    .text-lg, .\!text-lg{
+        @apply max-[300px]:!text-base
+    }
+    .text-base, .\!text-base{
+        @apply max-[300px]:!text-sm
+    }
+    .text-sm, .\!text-sm{
+        @apply max-[300px]:!text-xs
+    }
+    .text-xs, .\!text-xs{
+        @apply max-[300px]:!text-[10px]
+    }
+    .text-\[10px\], .\!text-\[10px\]{
+        @apply max-[300px]:!text-[8px]
+    }
+}
+ 
+
+html ::-webkit-scrollbar {
+    @apply w-[5px]
+}
+html ::-webkit-scrollbar-thumb {
+    @apply bg-gray-100 hover:bg-asd_black rounded-[10px];
+}
+html ::-webkit-scrollbar-track {
+    @apply w-[5px] bg-asd_white
+}
+
+/* listnig */
+.ag-theme-quartz.listing_table{    
+    --ag-border-color: #e5e7eb
+}
+.ag-theme-quartz.listing_table .ag-root-wrapper{
+    @apply rounded-t-lg rounded-b-none
+}
+.ag-theme-quartz.listing_table .ag-header-cell{
+    @apply bg-asd_white hover:!bg-asd_white text-[10px] text-asd_black font-bold uppercase
+}
+.ag-theme-quartz.listing_table .ag-header-cell.ag-column-last .ag-header-cell-label{
+    @apply justify-center   
+}
+.ag-theme-quartz.listing_table .ag-cell{
+    @apply content-center focus:!border-0 focus:!outline-0 focus-within:!border-0 focus-within:!outline-0
+}
+
+
+@media screen and (max-width: 300px) {    
+    .customPaginationWrap .customPagination{
+        @apply max-[300px]:!justify-start
+    }
+}
+
+:where(.customPaginationWrap, .ag-body-horizontal-scroll, #customersSection) ::-webkit-scrollbar {
+    @apply !h-[6px]
+}
+:where(.customPaginationWrap, .ag-body-horizontal-scroll, #customersSection) ::-webkit-scrollbar-thumb {
+    @apply !bg-gray-100 hover:!bg-asd_white !rounded-[10px];
+}
+:where(.customPaginationWrap, .ag-body-horizontal-scroll, #customersSection) ::-webkit-scrollbar-track {
+    @apply !h-[6px] !bg-asd_primary 
+}
+
+
+
+.modal_vertical_scroll .modal-dialog{
+    width: 90vw;
+    max-width: 90vw;
+}
+.modal_vertical_scroll .modal-dialog .modal-content{    
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.modal_vertical_scroll .modal-dialog ::-webkit-scrollbar {
+    @apply !w-[6px] !h-[6px]
+}
+.modal_vertical_scroll .modal-dialog ::-webkit-scrollbar-thumb {
+    @apply !bg-gray-100 hover:!bg-asd_white !rounded-[10px];
+}
+.modal_vertical_scroll .modal-dialog ::-webkit-scrollbar-track {
+    @apply !w-[6px] !h-[6px] !bg-asd_primary 
+}
+
+
+
+
+/* elements */
+:is(input , button):where(:active, :focus){
+    box-shadow: none !important;    
+}
+
+
+.form-check-input:checked {
+    @apply bg-asd_primary border-asd_primary !important;
+}
+
+.form-check-input:focus {
+    @apply border-asd_primary !important;
+}
+
+.form-check-input:focus[type=checkbox] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e") !important;
+}
+
+.form-check-input:checked:focus[type=checkbox] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
+}
+
+
+.asd_breadcrumb > ol{
+    margin: 0px !important;
+}
+.asd_breadcrumb > ol a{
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+
+/* tooltip */
+.asd_tooltip_after .tooltip-arrow::after{
+    @apply content-[''] absolute top-[1.5px] rotate-45 transition-transform size-[0.65rem] z-10
+}
+.tooltip_delete .tooltip-arrow::before{
+    @apply !hidden;    
+}
+.tooltip_delete .tooltip-arrow::after{
+    @apply !bg-red-600 right-[2px]
+}
+.tooltip_delete .tooltip-inner{
+    @apply !bg-red-600 z-20
+}
+.tooltip_edit .tooltip-arrow::before{
+    @apply !hidden;    
+}
+.tooltip_edit .tooltip-arrow::after{
+    @apply !bg-orange-600 left-[2px]
+}
+.tooltip_edit .tooltip-inner{
+    @apply !bg-orange-600 z-20
+}
+.tooltip_details .tooltip-arrow::before{
+    @apply !hidden;    
+}
+.tooltip_details .tooltip-arrow::after{
+    @apply !bg-asd_primary left-[2px]
+}
+.tooltip_details .tooltip-inner{
+    @apply !bg-asd_primary z-20
+}

@@ -1,0 +1,79 @@
+/* Handle small screen < 300 */
+@media screen and (max-width: 300px) {
+    #topProgressSection{
+        .card-body{
+            @apply max-[300px]:!p-0
+        }
+        .spanCartCheck{
+            @apply max-[300px]:!size-[35px] max-[300px]:!min-w-[35px]
+        }
+        .cartCheck{        
+            @apply max-[300px]:!w-3 max-[300px]:!min-w-3 max-[300px]:!h-3
+        }
+    }
+
+
+    #progressSection .card-body .cardBodyRow{
+        @apply max-[300px]:!flex-col
+    }
+
+    #progressSection .card-body .cardBodyRow .circularProgressbarWrap{
+        @apply max-[300px]:!m-0
+    }
+}
+
+
+@media screen and (max-width: 330px) {
+    :is(#apex_charts_wrap_type, #apex_charts_wrap_gender) :is(.apexcharts-text tspan, .apexcharts-legend-text){
+        @apply !text-[8px];
+    }    
+
+    span.apexcharts-legend-marker{
+        @apply !w-2 !h-2
+    }
+    span.apexcharts-legend-marker svg{
+        @apply !rounded-[50%]
+    }
+}
+
+
+@media screen and (min-width: 330.1px) {
+    :is(#apex_charts_wrap_type, #apex_charts_wrap_gender) .apexcharts-text tspan{
+        @apply !text-[11px];
+    }    
+}
+
+
+/* Handle mobile screen < 425 */
+@media screen and (max-width: 425px) {
+    #typeGenderSection{
+        .card-header{
+            @apply max-[425px]:!flex-wrap
+        }
+    }
+    #typeGenderSection .card-header h2{
+        @apply max-[425px]:!w-full max-[425px]:!min-w-full max-[425px]:!text-center
+    }
+    #typeGenderSection .card-header .btn-group{
+        @apply max-[425px]:!m-0
+    }
+
+    #customersSection .customersSectionLatest .cardBodyRow{
+        @apply max-[425px]:!w-[380px]
+    }
+}
+
+:is(#apex_charts_wrap_type, #apex_charts_wrap_gender) .apexcharts-text tspan{
+    @apply uppercase;
+}
+
+:is(#apex_charts_wrap_type, #apex_charts_wrap_gender) .apexcharts-legend-text{
+    @apply !font-semibold
+}
+
+.progress_boxes .circularProgressbar path:nth-of-type(1){
+    @apply !stroke-[3px]
+}
+.progress_boxes .circularProgressbar path:nth-of-type(2){
+    @apply !stroke-[4px]
+}

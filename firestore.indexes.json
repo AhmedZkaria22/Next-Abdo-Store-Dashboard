@@ -1,0 +1,41 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Product Items",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "index", "order": "ASCENDING" },
+        { "fieldPath": "title", "order": "ASCENDING" },
+        { "fieldPath": "filter", "order": "ASCENDING" },
+        { "fieldPath": "gender", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    ["title", "filter", "gender", "createdAt"].map(item => {
+      return{
+        "collectionGroup": "Product Items",
+        "queryScope": "COLLECTION",
+        "fields": [
+          { "fieldPath": "index", "order": "ASCENDING" },
+          { "fieldPath": item, "order": "ASCENDING" },
+        ]  
+      }
+    }),
+    {
+      "collectionGroup": "Product Items",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "index", "order": "ASCENDING" },
+        { "fieldPath": "title", "order": "ASCENDING" },
+        { "fieldPath": "filter", "order": "ASCENDING" },
+        { "fieldPath": "gender", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }  
+
+  ],
+  "fieldOverrides": []
+}
+
+  // ["index", "title", "filter", "gender", "createdAt"]
+  // ["title", "filter", "gender", "createdAt"]

@@ -1,0 +1,79 @@
+
+/* Handle small screen < 300 */
+@media screen and (max-width: 300px) {    
+    .addEditModalBody .sizeRow {
+        @apply !flex-col
+    }
+    .addEditModalBody .sizeRow .sizeRowItem{
+        @apply !max-w-full
+    }
+
+    .addEditModalBody .radioRow{
+        @apply !flex-col
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #productsControls{
+        @apply max-[350px]:!flex-col max-[350px]:!gap-2 max-[350px]:!py-3 max-[350px]:*:!justify-center h-40
+    }
+}
+
+@media screen and (min-width: 299.9px) and (max-width: 425px) {
+    .addEditModalBody .sizeRow .sizeRowItem{
+        @apply !max-w-asd_calc_50P_0_5rem
+    }
+}
+
+/* Handle mobile screen < 425 */
+@media screen and (max-width: 425px) {
+    .detailsCarousel{
+        @apply max-[425px]:!h-40 max-[425px]:!w-40 max-[425px]:!mx-auto max-[425px]:!mb-6
+    }
+    .detailsCarousel .carousel-inner{
+        @apply max-[425px]:!h-40 max-[425px]:!w-40
+    }
+    .detailsCarousel .carousel-item{
+        @apply max-[425px]:!h-40
+    }
+    .detailsCarousel .carousel-item img{
+        @apply max-[425px]:!h-40 max-[425px]:!w-40
+    }
+    .detailsCarousel .carousel-indicators{
+        @apply max-[425px]:!-bottom-10
+    }
+    .detailsCarousel .carousel-control-prev{
+        @apply max-[425px]:!left-0
+    }
+    .detailsCarousel .carousel-control-next{
+        @apply max-[425px]:!right-0
+    }
+
+    .detailsSizes .list-group.list-group-horizontal{
+        @apply max-[425px]:!flex-wrap
+    }
+    .detailsColors > div{
+        @apply max-[425px]:!flex-wrap
+    }
+
+
+    .addEditModalBody .priceRow{
+        @apply !flex-col
+    }
+    .addEditModalBody .radioRow{
+        @apply !px-0 !flex-wrap
+    }
+}
+
+
+.detailsCarousel .carousel-indicators button{
+    @apply !bg-asd_black
+}
+
+.detailsCarousel .carousel-control-prev .carousel-control-prev-icon{
+    @apply !bg-asd_black_prev_arrow !bg-asd_75 !bg-asd_white !rounded-md
+}
+.detailsCarousel .carousel-control-next .carousel-control-next-icon{
+    @apply !bg-asd_black_next_arrow !bg-asd_75 !bg-asd_white !rounded-md
+}
+

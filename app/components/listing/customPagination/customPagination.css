@@ -1,0 +1,21 @@
+.customPagination{
+    @apply !m-0 !py-3 !px-2 justify-center gap-2 !w-auto overflow-auto
+}
+
+.customPagination .page-link{
+    @apply p-0 w-[30.68px] h-[32.8px]
+    flex items-center justify-center
+    bg-asd_white hover:!bg-asd_white text-asd_black hover:!text-asd_black !text-sm
+    shadow-none outline-none
+    border-[#e5e7eb] rounded-[5px] font-semibold
+}
+
+.customPagination .active>.page-link{
+    @apply !bg-asd_primary !text-asd_white !border-asd_primary
+}
+
+@media screen and (max-width: 375px) {
+    .customPagination .page-link{
+        @apply max-[375px]:!w-6 max-[375px]:!h-[26px] max-[375px]:!text-xs     
+    }
+}

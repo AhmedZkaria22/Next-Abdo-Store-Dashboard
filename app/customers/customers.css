@@ -1,0 +1,21 @@
+@media screen and (max-width: 425px) {
+    .detailsHeadRow{
+        @apply max-[425px]:!hidden
+    }
+    .detailsBodyRow{
+        @apply max-[425px]:!flex-col
+    }
+    .detailsRowItem{
+        @apply max-[425px]:!w-full max-[425px]:!max-w-full
+    }
+
+    .detailsRowItemLGS{
+        @apply max-[425px]:!hidden
+    }
+    .detailsRowItemSMS{
+        @apply max-[425px]:!flex max-[425px]:!flex-row max-[425px]:!items-center max-[425px]:!gap-3
+    }
+    .detailsRowItemSMS > div{
+        @apply max-[425px]:!w-asd_calc_100P_72px max-[425px]:!max-w-asd_calc_100P_72px
+    }
+}
