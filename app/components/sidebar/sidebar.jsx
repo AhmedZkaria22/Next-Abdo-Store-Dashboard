@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, ButtonGroup } from 'react-bootstrap'
-import "./Sidebar.css"
+import "./sidebar.css"
 
 const Sidebar = () => {
   const customButtonClass = 'p-0 h-11 max-h-11 !flex items-center justify-center !bg-[#eaebef] !text-asd_black border-0 !rounded-xl'
