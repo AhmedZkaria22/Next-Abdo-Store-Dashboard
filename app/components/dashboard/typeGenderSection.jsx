@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Card, ProgressBar } from 'react-bootstrap'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'

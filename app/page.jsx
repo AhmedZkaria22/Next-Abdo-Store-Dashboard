@@ -1,4 +1,4 @@
-'use client'
+
 
 import React from 'react'
 import CustomersSection from './components/dashboard/customersSection'

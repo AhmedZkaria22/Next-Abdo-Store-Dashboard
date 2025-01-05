@@ -1,3 +1,5 @@
+'use client'
+
 import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/dashboard/dashboard'
 import React, { useEffect, useState } from 'react'
 import { Card, ProgressBar } from 'react-bootstrap'
