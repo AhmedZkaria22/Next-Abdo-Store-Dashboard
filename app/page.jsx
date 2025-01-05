@@ -1,13 +1,13 @@
 'use client'
 
 import React from 'react'
-import CustomersSection from '../components/dashboard/customersSection'
-import ProgressSection from '../components/dashboard/progressSection'
-import TypeGenderSection from '../components/dashboard/typeGenderSection'
-import TopProgressSection from '../components/dashboard/topProgressSection'
-import './dashboard.css'
+import CustomersSection from './components/dashboard/customersSection'
+import ProgressSection from './components/dashboard/progressSection'
+import TypeGenderSection from './components/dashboard/typeGenderSection'
+import TopProgressSection from './components/dashboard/topProgressSection'
+import './dashboard/dashboard.css'
 import Head from 'next/head'
-import { images } from '../images/images'
+import { images } from './images/images'
 
 const Dashboard = () => {  
   return (
