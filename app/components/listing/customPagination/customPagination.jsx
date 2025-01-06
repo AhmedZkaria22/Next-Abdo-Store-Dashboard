@@ -1,21 +1,30 @@
+'use client'
 import Pagination from 'react-bootstrap/Pagination';
 import './customPagination.css'
+import { useEffect, useState } from 'react';
 
-const CustomPagination = ({count, size, page, handleChange}) => {    
+const CustomPagination = ({count, size, page, handleChange}) => {  
+    const [windowListener, setWindowListener] = useState(false);
+    
+    useEffect(() => {
+        if( typeof window !== 'undefined' ){ setWindowListener(true); }
+    }, [windowListener])  
+  
     return(
-        <Pagination size={size || "lg"} className='customPagination'>{
-            Array.apply(null, Array(count)).map((item, index) => {
-                return(
-                    <Pagination.Item key={index} 
-                        active={index == page} 
-                        // className='p-5'                        
-                        onClick={() => handleChange(index)}
-                    >
-                    {index+1}
-                  </Pagination.Item>              
-                )
-            })
-        }</Pagination>
+        <>{
+            windowListener ? <Pagination size={size || "lg"} className='customPagination'>{
+                Array.apply(null, Array(count)).map((item, index) => {
+                    return(
+                        <Pagination.Item key={index} 
+                            active={index == page} 
+                            onClick={() => handleChange(index)}
+                        >
+                        {index+1}
+                      </Pagination.Item>              
+                    )
+                })
+            }</Pagination> : <></>
+        }</>
     )
 };
 
