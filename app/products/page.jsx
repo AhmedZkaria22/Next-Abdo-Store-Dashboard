@@ -24,6 +24,7 @@ import { images } from '../images/images';
 
 const Products = () => {
 
+  const [windowListener, setWindowListener] = useState(false);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const pageSize = 5;
@@ -288,83 +289,86 @@ const Products = () => {
   },[page, orderByAttr, orderByType, filterByValues])
   
 
+  useEffect(() => {    
+    if( typeof window !== 'undefined' ){ setWindowListener(true); }
+  }, [windowListener])  
+
   
   return (
-    <>
-      <Head>
-        <meta name="og:title" content="Next | Abdo Store Dashboard - Products" />
-        <meta name="og:description" content="Abdo store dashboard products page to handle website products with full crud operations" />
-        <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Products, Crud, Create, Read, Update, Delete, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
-        <meta property='og:type' content='website' />
-        <meta property='og:image' content={images.products} />
-      </Head>
+    <>{
+      windowListener ? <>
+        <Head>
+          <meta name="og:title" content="Next | Abdo Store Dashboard - Products" />
+          <meta name="og:description" content="Abdo store dashboard products page to handle website products with full crud operations" />
+          <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Products, Crud, Create, Read, Update, Delete, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
+          <meta property='og:type' content='website' />
+          <meta property='og:image' content={images.products} />
+        </Head>
 
-      <div id='productsControls' className='flex items-center justify-between px-4'>
-      <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
-        <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        
-        <Breadcrumb.Item active className='!text-gray-400 text-sm font-medium'>Products</Breadcrumb.Item>
-      </Breadcrumb>
+        <div id='productsControls' className='flex items-center justify-between px-4'>
+        <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
+          <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        
+          <Breadcrumb.Item active className='!text-gray-400 text-sm font-medium'>Products</Breadcrumb.Item>
+        </Breadcrumb>
 
-      <FilterBox 
-        showSort={showSort}
-        setShowSort={setShowSort}
-        targetSort={targetSort}
-        SortOverlayModalChildren={hocs.SortOverlayModalChildren(setShowSort, setPage, setOrderByAttr, setOrderByType)}
-        showFilter={showFilter}
-        setShowFilter={setShowFilter}
-        targetFilter={targetFilter}
-        FilterOverlayModalChildren={hocs.FilterOverlayModalChildren(setShowFilter, setPage, setFilterByValues)} 
-        showAdd={showAdd}
-        setShowAdd={setShowAdd}
-        handleShowAdd={handleShowAdd}
-        AddEditDashboardModalChildren={hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowAdd, 'add-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'add', setCount, count)} 
-        resetProps={[[orderByAttr, orderByType, filterByValues], [setPage, setOrderByAttr, setOrderByType, setFilterByValues]]}
-      />
-      </div>
-
-      <div>
-        <DashboardModal show={showEdit} onHide={()=>setShowEdit(false)} modalId={'edit-product'} className='modal_vertical_scroll'>
-          {hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowEdit, 'edit-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'edit', null, null)}
-        </DashboardModal>
-      </div>
-
-      <div>
-        <DashboardModal show={showDelete} onHide={()=>setShowDelete(false)} modalId={'delete-product'}>        
-          {hocs.DeleteDashboardModalChildren(setShowDelete, setPage, 'delete-product', deleteValues?.name, deleteValues?.id)}
-        </DashboardModal>
-      </div>
-
-      <div>
-        <DashboardModal show={showDetails} onHide={()=>setShowDetails(false)} modalId={'details-product'} className='modal_vertical_scroll'>        
-          {hocs.DetailsDashboardModalChildren(setShowDetails, 'details-product', detailsValues)}
-        </DashboardModal>
-      </div>
-
-
-
-      <div className='flex flex-col justify-between gap-3 p-4 bg-gray-100 h-auto !relative !shadow-[inset_0_1px_1px_0_rgba(0,0,0,.1),inset_0_1px_2px_-1px_rgba(0,0,0,.1)]'>
-        <div className='ag-theme-quartz listing_table w-full h-[496px]'>
-          <AgGridReact 
-            rowData={rowData}
-            rowHeight={85}
-            columnDefs={colDefs}
-            suppressRowHoverHighlight={true}            
-          />
+        <FilterBox 
+          showSort={showSort}
+          setShowSort={setShowSort}
+          targetSort={targetSort}
+          SortOverlayModalChildren={hocs.SortOverlayModalChildren(setShowSort, setPage, setOrderByAttr, setOrderByType)}
+          showFilter={showFilter}
+          setShowFilter={setShowFilter}
+          targetFilter={targetFilter}
+          FilterOverlayModalChildren={hocs.FilterOverlayModalChildren(setShowFilter, setPage, setFilterByValues)} 
+          showAdd={showAdd}
+          setShowAdd={setShowAdd}
+          handleShowAdd={handleShowAdd}
+          AddEditDashboardModalChildren={hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowAdd, 'add-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'add', setCount, count)} 
+          resetProps={[[orderByAttr, orderByType, filterByValues], [setPage, setOrderByAttr, setOrderByType, setFilterByValues]]}
+        />
         </div>
 
-        {count > pageSize && (
-          <div className="customPaginationWrap bg-asd_white border-t border-[#e5e7eb] rounded-b-lg">
-            <CustomPagination
-              count={Math.ceil(count / [pageSize])}
-              size="sm"
-              page={page}
-              handleChange={(value) => handlePageChange(value, setPage)}
+        <div>
+          <DashboardModal show={showEdit} onHide={()=>setShowEdit(false)} modalId={'edit-product'} className='modal_vertical_scroll'>
+            {hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowEdit, 'edit-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'edit', null, null)}
+          </DashboardModal>
+        </div>
+
+        <div>
+          <DashboardModal show={showDelete} onHide={()=>setShowDelete(false)} modalId={'delete-product'}>        
+            {hocs.DeleteDashboardModalChildren(setShowDelete, setPage, 'delete-product', deleteValues?.name, deleteValues?.id)}
+          </DashboardModal>
+        </div>
+
+        <div>
+          <DashboardModal show={showDetails} onHide={()=>setShowDetails(false)} modalId={'details-product'} className='modal_vertical_scroll'>        
+            {hocs.DetailsDashboardModalChildren(setShowDetails, 'details-product', detailsValues)}
+          </DashboardModal>
+        </div>
+
+        <div className='flex flex-col justify-between gap-3 p-4 bg-gray-100 h-auto !relative !shadow-[inset_0_1px_1px_0_rgba(0,0,0,.1),inset_0_1px_2px_-1px_rgba(0,0,0,.1)]'>
+          <div className='ag-theme-quartz listing_table w-full h-[496px]'>
+            <AgGridReact 
+              rowData={rowData}
+              rowHeight={85}
+              columnDefs={colDefs}
+              suppressRowHoverHighlight={true}            
             />
           </div>
-        )}
-      </div>
 
-    </>
+          {count > pageSize && (
+            <div className="customPaginationWrap bg-asd_white border-t border-[#e5e7eb] rounded-b-lg">
+              <CustomPagination
+                count={Math.ceil(count / [pageSize])}
+                size="sm"
+                page={page}
+                handleChange={(value) => handlePageChange(value, setPage)}
+              />
+            </div>
+          )}
+        </div>
+      </> : <></>
+    }</>
   )
 }
 

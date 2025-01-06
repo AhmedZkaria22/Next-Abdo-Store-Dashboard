@@ -21,6 +21,8 @@ import Head from 'next/head';
 
 const Customers = () => {
   const lightPStyle = 'm-0 text-sm text-gray-700 font-normal';
+  const [windowListener, setWindowListener] = useState(false);
+
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const pageSize = 5;
@@ -80,71 +82,72 @@ const Customers = () => {
   useEffect(()=>{    
     getCustomers(setRowData, page, pageSize, orderByAttr, orderByType, filterByValues, setCount);
     // console.log('products length', page, orderByAttr, orderByType, filterByValues, count);
-  },[page, orderByAttr, orderByType, filterByValues])
+  },[page, orderByAttr, orderByType, filterByValues])    
+
+
+  useEffect(() => {    
+    if( typeof window !== 'undefined' ){ setWindowListener(true); }
+  }, [windowListener])  
   
-
   return (
-  <>
-    <Head>
-      <meta name="og:title" content="Next | Abdo Store Dashboard - Customers" />
-      <meta name="og:description" content="Abdo store dashboard customers page to view all website loged customers" />
-      <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Customers, loged in, Authentication, Read, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
-      <meta property='og:type' content='website' />
-      <meta property='og:image' content={images.customers} />
-    </Head>
+    <>{
+      windowListener ? <>
+        <Head>
+          <meta name="og:title" content="Next | Abdo Store Dashboard - Customers" />
+          <meta name="og:description" content="Abdo store dashboard customers page to view all website loged customers" />
+          <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Customers, loged in, Authentication, Read, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
+          <meta property='og:type' content='website' />
+          <meta property='og:image' content={images.customers} />
+        </Head>
 
-    <div className='flex items-center justify-between px-4'>
-    <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
-      <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        
-      <Breadcrumb.Item active className='!text-gray-400 text-sm font-medium'>Customers</Breadcrumb.Item>
-    </Breadcrumb>
+        <div className='flex items-center justify-between px-4'>
+        <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
+          <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        
+          <Breadcrumb.Item active className='!text-gray-400 text-sm font-medium'>Customers</Breadcrumb.Item>
+        </Breadcrumb>
 
-    <FilterBox
-      showSort={showSort}
-      setShowSort={setShowSort}
-      targetSort={targetSort}
-      SortOverlayModalChildren={hocs.SortOverlayModalChildren(setShowSort, setPage, setOrderByAttr, setOrderByType)}
-      showFilter={showFilter}
-      setShowFilter={setShowFilter}
-      targetFilter={targetFilter}
-      FilterOverlayModalChildren={hocs.FilterOverlayModalChildren(setShowFilter, setPage, setFilterByValues)} 
-      resetProps={[[orderByAttr, orderByType, filterByValues], [setPage, setOrderByAttr, setOrderByType, setFilterByValues]]}
-    />
-    </div>
-
-
-    <div>
-      <DashboardModal show={showDetails} onHide={handleHideDetails} modalId={'details-product'} className='modal_vertical_scroll'>
-        {hocs.DetailsDashboardModalChildren(handleHideDetails, 'details-product', customerDetails, detailsValues)}
-      </DashboardModal>
-    </div>
-
-
-
-    <div className='flex flex-col justify-between gap-3 p-4 bg-gray-100 h-auto !relative !shadow-[inset_0_1px_1px_0_rgba(0,0,0,.1),inset_0_1px_2px_-1px_rgba(0,0,0,.1)]'>
-      <div className='ag-theme-quartz listing_table w-full h-[496px]'>
-        <AgGridReact
-          rowData={rowData}
-          rowHeight={85}
-          columnDefs={colDefs}
-          suppressRowHoverHighlight={true}            
+        <FilterBox
+          showSort={showSort}
+          setShowSort={setShowSort}
+          targetSort={targetSort}
+          SortOverlayModalChildren={hocs.SortOverlayModalChildren(setShowSort, setPage, setOrderByAttr, setOrderByType)}
+          showFilter={showFilter}
+          setShowFilter={setShowFilter}
+          targetFilter={targetFilter}
+          FilterOverlayModalChildren={hocs.FilterOverlayModalChildren(setShowFilter, setPage, setFilterByValues)} 
+          resetProps={[[orderByAttr, orderByType, filterByValues], [setPage, setOrderByAttr, setOrderByType, setFilterByValues]]}
         />
-      </div>
-
-      {count > pageSize && (
-        <div className='customPaginationWrap bg-asd_white border-t border-[#e5e7eb] rounded-b-lg'>
-          <CustomPagination
-            count={Math.ceil(count / [pageSize])}
-            size="sm"
-            page={page}
-            handleChange={(value) => handlePageChange(value, setPage)}
-          />
         </div>
-      )}
-    </div>
 
-  </>
+        <div>
+          <DashboardModal show={showDetails} onHide={handleHideDetails} modalId={'details-product'} className='modal_vertical_scroll'>
+            {hocs.DetailsDashboardModalChildren(handleHideDetails, 'details-product', customerDetails, detailsValues)}
+          </DashboardModal>
+        </div>
 
+        <div className='flex flex-col justify-between gap-3 p-4 bg-gray-100 h-auto !relative !shadow-[inset_0_1px_1px_0_rgba(0,0,0,.1),inset_0_1px_2px_-1px_rgba(0,0,0,.1)]'>
+          <div className='ag-theme-quartz listing_table w-full h-[496px]'>
+            <AgGridReact
+              rowData={rowData}
+              rowHeight={85}
+              columnDefs={colDefs}
+              suppressRowHoverHighlight={true}            
+            />
+          </div>
+
+          {count > pageSize && (
+            <div className='customPaginationWrap bg-asd_white border-t border-[#e5e7eb] rounded-b-lg'>
+              <CustomPagination
+                count={Math.ceil(count / [pageSize])}
+                size="sm"
+                page={page}
+                handleChange={(value) => handlePageChange(value, setPage)}
+              />
+            </div>
+          )}
+        </div>
+      </> : <></>
+    }</>
   )
 }
 
