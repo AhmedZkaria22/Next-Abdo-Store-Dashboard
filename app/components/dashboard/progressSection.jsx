@@ -10,6 +10,7 @@ import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/dashboa
 
 const ProgressSection = ({ProgData}) => {
   const progressBoxStrokeColors = ['#f43f5e', '#22c55e', '#3b82f6'];
+  const [windowListener, setWindowListener] = useState(false);    
 
 /*With integration*/
   const [countState, setCountState] = useState({
@@ -51,8 +52,13 @@ const ProgressSection = ({ProgData}) => {
     getProductsTypeGenderLength(setCountState, 'shirt', 'twinz', 'shirt_twinz');      
   }, [])
 
+  useEffect(() => {    
+    if( typeof window !== 'undefined' ){ setWindowListener(true); }
+  }, [windowListener])
+
   return (
-    <section id='progressSection' className='!bg-asd_white !rounded-[10px]'>
+    <>{
+      windowListener ? <section id='progressSection' className='!bg-asd_white !rounded-[10px]'>
         <Card className='!bg-transparent border-0 shadow-[0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1)]'>
         <Card.Header className='!bg-transparent !p-5 !border-[#e5e7eb] flex items-center justify-between gap-y-2'>
             <h2 className='text-base font-bold text-asd_black capitalize'>{ProgData[0] == 'Female' ? 'Women' : ProgData[0]} Progress</h2>
@@ -66,12 +72,6 @@ const ProgressSection = ({ProgData}) => {
                     <TableImage src={icons[item]} width={38.4} height={38.4} borderRadius={'50%'} customClass={'w-[38.4px] h-[38.4px]'} />
                     <span className='block text-sm font-semibold text-asd_black capitalize'>{item}</span>
                     <div className="circularProgressbarWrap !ml-auto !mr-0">
-                    {/* <CircleProgress color={progressBoxStrokeColors[index]} percentage={45} text={'45 %'} /> */}
-                    {/* With integration */}
-                    {/* {console.log('progs', countState[ProgData[2][index]], parseInt(countState[ProgData[2][index]] / countState.products *100), `${parseInt(countState[ProgData[2][index]] / countState.products *100)} %`)} */}
-                    {/* <CircleProgress color={progressBoxStrokeColors[index]} percentage={parseInt(countState[ProgData[2][index]] / countState.products *100)} text={`${parseInt(countState[ProgData[2][index]] / countState.products *100)} %`} /> */}
-                    {/* {console.log('progs', countState[ProgData[2][index]], parseInt(countState[ProgData[2][index]] / countState[ProgData[3][0]] *100), `${parseInt(countState[ProgData[2][index]] / countState[ProgData[3][0]] *100)} %`)} */}
-                    {console.log(`progs - ${ProgData[3]}`, countState[ProgData[2][index]], countState[ProgData[3][0]], `${parseInt(countState[ProgData[2][index]] / countState[ProgData[3][0]] *100)} %`)}
                     <CircleProgress color={progressBoxStrokeColors[index]} percentage={parseInt(countState[ProgData[2][index]] / countState[ProgData[3][0]] *100)} text={`${parseInt(countState[ProgData[2][index]] / countState[ProgData[3][0]] *100)} %`} />
                     </div>
                 </div>
@@ -80,7 +80,8 @@ const ProgressSection = ({ProgData}) => {
             }                
         </Card.Body>
         </Card>
-    </section>            
+      </section> : <></>
+    }</>
 
   )
 }
