@@ -2,10 +2,10 @@
 
 import React from 'react'
 import Head from 'next/head'
-import TopProgressSection from './components/dashboard/TopProgressSection'
-import TypeGenderSection from './components/dashboard/TypeGenderSection'
-import CustomersSection from './components/dashboard/CustomersSection'
-import ProgressSection from './components/dashboard/ProgressSection'
+import TopProgressSection from '@/app/components/dashboard//TopProgressSection.jsx'
+import TypeGenderSection from '@/app/components/dashboard//TypeGenderSection.jsx'
+import CustomersSection from '@/app/components/dashboard//CustomersSection.jsx'
+import ProgressSection from '@/app/components/dashboard//ProgressSection.jsx'
 import { images } from './images/images'
 import './dashboard/dashboard.css'
 
