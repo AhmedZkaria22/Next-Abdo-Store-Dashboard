@@ -23,6 +23,7 @@
     "react-bootstrap-icons": "^1.11.4",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18",
+    "sharp": "^0.33.5",
     "webpack": "^5.97.1"
   },
   "devDependencies": {
