@@ -1,11 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
-import './dashboard/dashboard.css'
-import { images } from './images/images'
 import TopProgressSection from './components/dashboard/TopProgressSection'
 import TypeGenderSection from './components/dashboard/TypeGenderSection'
 import CustomersSection from './components/dashboard/CustomersSection'
 import ProgressSection from './components/dashboard/ProgressSection'
+import { images } from './images/images'
+import './dashboard/dashboard.css'
 
 const Dashboard = () => {  
   return (
