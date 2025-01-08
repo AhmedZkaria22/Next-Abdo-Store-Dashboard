@@ -38,7 +38,6 @@ const FilterBox = ({
             ref={targetSort}            
             onClick={() => {
                 setShowSort(!showSort)
-                console.log('handle sort');
             }} 
             className='p-0 !border !border-gray-400 !rounded-sm !bg-asd_white w-[40.1px] h-[39.6px]'
             >
@@ -48,7 +47,6 @@ const FilterBox = ({
             ref={targetFilter}
             onClick={() => {
                 setShowFilter(!showFilter)
-                console.log('handle filter');
             }} 
             className='p-0 !border !border-gray-400 !rounded-sm !bg-asd_white w-[40.1px] h-[39.6px]'
         >

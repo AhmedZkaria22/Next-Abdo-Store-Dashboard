@@ -12,7 +12,6 @@ const ProgressSection = ({ProgData}) => {
   const progressBoxStrokeColors = ['#f43f5e', '#22c55e', '#3b82f6'];
   const [windowListener, setWindowListener] = useState(false);    
 
-/*With integration*/
   const [countState, setCountState] = useState({
     products: 0,    
 
@@ -33,24 +32,25 @@ const ProgressSection = ({ProgData}) => {
   })
 
 
-/*With integration*/
   useEffect(() => {
-    getAllProductsLength(setCountState);
+    if( typeof window !== 'undefined' && windowListener ){
+      getAllProductsLength(setCountState);
 
-    getProductsTypeGenderLength(setCountState, null, 'female', 'female');
-    getProductsTypeGenderLength(setCountState, null, 'men', 'men');
-    getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
-    
-    getProductsTypeGenderLength(setCountState, 'shirt', 'female', 'shirt_female');
-    getProductsTypeGenderLength(setCountState, 'pant', 'female', 'pant_female');
-    getProductsTypeGenderLength(setCountState, 'shoes', 'female', 'shoes_female');
-    
-    getProductsTypeGenderLength(setCountState, 'shirt', 'men', 'shirt_men');
-    getProductsTypeGenderLength(setCountState, 'pant', 'men', 'pant_men');    
-    getProductsTypeGenderLength(setCountState, 'shoes', 'men', 'shoes_men');    
-    
-    getProductsTypeGenderLength(setCountState, 'shirt', 'twinz', 'shirt_twinz');      
-  }, [])
+      getProductsTypeGenderLength(setCountState, null, 'female', 'female');
+      getProductsTypeGenderLength(setCountState, null, 'men', 'men');
+      getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
+      
+      getProductsTypeGenderLength(setCountState, 'shirt', 'female', 'shirt_female');
+      getProductsTypeGenderLength(setCountState, 'pant', 'female', 'pant_female');
+      getProductsTypeGenderLength(setCountState, 'shoes', 'female', 'shoes_female');
+      
+      getProductsTypeGenderLength(setCountState, 'shirt', 'men', 'shirt_men');
+      getProductsTypeGenderLength(setCountState, 'pant', 'men', 'pant_men');    
+      getProductsTypeGenderLength(setCountState, 'shoes', 'men', 'shoes_men');    
+      
+      getProductsTypeGenderLength(setCountState, 'shirt', 'twinz', 'shirt_twinz');    
+    }  
+  }, [windowListener])
 
   useEffect(() => {    
     if( typeof window !== 'undefined' ){ setWindowListener(true); }

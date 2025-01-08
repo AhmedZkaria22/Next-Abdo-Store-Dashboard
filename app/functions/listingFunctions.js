@@ -9,7 +9,6 @@ export const handlePageChange = (value, setPage) => {
 export const getTotalCount = async(collectionName, setCount, customQuery) => {
   const snapshot = await getCountFromServer(customQuery ? customQuery : collection(db, collectionName));
   setCount(snapshot?.data().count);
-//   console.log('totalCount', snapshot?.data().count);
 }
 
 export const handleSort = (setPage, setOrderByAttr, setOrderByType, formOrderByAttr, formOrderType) => {

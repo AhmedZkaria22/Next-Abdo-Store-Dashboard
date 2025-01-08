@@ -119,7 +119,6 @@ const FilterOverlayModalChildren = (setShowFilter, setPage, setFilterByValues) =
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(formValues);
     // handleFilter(setPage, setFilterByValues, formValues);
     handleFilter(setPage, setFilterByValues, {...formValues, colors: formValues?.colors?.replaceAll(" ", "")});
     handleClose();
@@ -224,7 +223,6 @@ const AddEditDashboardModalChildren = (formValues, setFormValues, handleCloseAdd
             const test_hex6 = colorItemVar.match(regex_hex6);
             const test_rgb = colorItemVar.match(regex_rgb);
             const test_name = colorItemVar.match(regex_name);
-            // console.log('clrs', colorItem, regex_hex3.test(colorItem), regex_hex6.test(colorItem), regex_rgb.test(colorItem), regex_name.test(colorItem))
             
             // regex_arr.push(test_hex3, test_hex6, test_rgb, test_name);
             if(test_hex3 || test_hex6 || test_rgb || test_name){
@@ -235,9 +233,7 @@ const AddEditDashboardModalChildren = (formValues, setFormValues, handleCloseAdd
     }
     
     success += regex_arr.filter(item => item == true).length;
-
       
-    // console.log('clrs', colorsList, success , colorsList?.length)
     return success == colorsList?.length
   }
 
@@ -252,7 +248,6 @@ const AddEditDashboardModalChildren = (formValues, setFormValues, handleCloseAdd
         const imageItemVar = imageItem.trim();
         // const regexRes = regex.test(imageItemVar);
         const regexRes = imageItemVar.match(regex);
-        // console.log('clr5s', imagesList, regexRes, `${imageItemVar}`)
 
         // www. condition to check if www. repeated or not , -1 where not || 0 where start || 7 where http || 8 where https
         // http:// condition to check if http:// repeated or not , -1 where not || 0 where start and https:// -1(not found)
@@ -264,14 +259,13 @@ const AddEditDashboardModalChildren = (formValues, setFormValues, handleCloseAdd
            ((imageItemVar.indexOf('https://') == imageItemVar.lastIndexOf('https://')) && 
            (imageItemVar.indexOf('https://') == -1 || (imageItemVar.indexOf('https://') == 0 && imageItemVar.indexOf('http://') == -1)))           
         ){
-            // console.log('clr5s-success');
             regex_arr.push(true)
         }
     })
 
     let success = 0;
     success += regex_arr.filter(item => item == true).length;
-    //   console.log('clr5s-return', success , imagesList?.length, regex_arr)
+
     return success == imagesList?.length
   }
 

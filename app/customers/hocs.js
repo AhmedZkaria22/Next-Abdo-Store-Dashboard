@@ -89,7 +89,6 @@ const FilterOverlayModalChildren = (setShowFilter, setPage, setFilterByValues) =
 });
 
   const handleChange = (item, eTarget) => {
-    console.log('hi', item, eTarget.value)
     setFormValues(prev => ({...prev, [item]: eTarget.value}))
   }
 
@@ -105,7 +104,6 @@ const FilterOverlayModalChildren = (setShowFilter, setPage, setFilterByValues) =
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(formValues);
     handleFilter(setPage, setFilterByValues, formValues);    
     handleClose();
   }

@@ -24,7 +24,6 @@ import { images } from '../images/images';
 
 const Products = () => {
 
-  const [windowListener, setWindowListener] = useState(false);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const pageSize = 5;
@@ -136,36 +135,23 @@ const Products = () => {
     let newFormValues = {};
     // newFormValues : to check if formValues properties empty||null assign values from editValues(prop before edit)    
     
-    // if(formType === 'add'){
-        Object.keys(formValues).map(prp => {
-            ((!formValues[prp] || !Object.keys(formValues[prp]).length) && prp != 'sizesFound')
-            ? prp == 'sizes' ? (newFormValues[prp] = {}) 
-                : prp == 'colors' ? (newFormValues[prp] = []) 
-                : (newFormValues[prp] = "")
-            : prp == 'sizes' ? (newFormValues[prp] = deletedFormValuesSizes) 
-                : (newFormValues[prp] = formValues[prp])
-        });    
-        if(formType === 'add'){ getTotalCount(setCount, null); }
-    /*}else{
-        Object.keys(formValues).map(prp => {
-            ((!formValues[prp] || !Object.keys(formValues[prp]).length) && prp != 'sizesFound')
-            ? prp == 'title' ? (newFormValues[prp] = editValues['name']) 
-                : prp == 'filter' ? (newFormValues[prp] = editValues['type']) 
-                : (newFormValues[prp] = formValues[prp] == undefined ? "" : formValues[prp])
-            : prp == 'sizes' ? (newFormValues[prp] = deletedFormValuesSizes) 
-                : (newFormValues[prp] = formValues[prp])
-        });    
-    }*/
-
-    console.log('before_if :',newFormValues)
-    if(
+      Object.keys(formValues).map(prp => {
+          ((!formValues[prp] || !Object.keys(formValues[prp]).length) && prp != 'sizesFound')
+          ? prp == 'sizes' ? (newFormValues[prp] = {}) 
+              : prp == 'colors' ? (newFormValues[prp] = []) 
+              : (newFormValues[prp] = "")
+          : prp == 'sizes' ? (newFormValues[prp] = deletedFormValuesSizes) 
+              : (newFormValues[prp] = formValues[prp])
+      });    
+      if(formType === 'add'){ getTotalCount(setCount, null); }
+    
+      if(
         (newFormValues['title'].length >= 4 && newFormValues['title'].length <= 35) &&
         (newFormValues['desc'].length >= 4 && newFormValues['desc'].length <= 300) &&
         parseInt(newFormValues['price']) >= 1 && 
         ((parseInt(newFormValues['PriceBeforeDescount']) >= 1 && parseInt(newFormValues['PriceBeforeDescount']) != NaN) || newFormValues['PriceBeforeDescount'].length == 0) &&
         colorsIsValidate([...newFormValues['colors']]) &&
-        imagesIsValidate([...newFormValues['images']]) &&
-        // (newFormValues['images'].length >= 3 && newFormValues['images'].length <= 10) &&
+        imagesIsValidate([...newFormValues['images']]) &&        
         ((parseInt(newFormValues?.sizes?.['sm']) >= 1 && parseInt(newFormValues?.sizes?.['sm']) != NaN) || !newFormValues?.sizes?.['sm']) &&
         ((parseInt(newFormValues?.sizes?.['md']) >= 1 && parseInt(newFormValues?.sizes?.['md']) != NaN) || !newFormValues?.sizes?.['md']) &&
         ((parseInt(newFormValues?.sizes?.['lg']) >= 1 && parseInt(newFormValues?.sizes?.['lg']) != NaN) || !newFormValues?.sizes?.['lg']) &&
@@ -173,11 +159,9 @@ const Products = () => {
         newFormValues['filter'].length > 1 && 
         newFormValues['gender'].length > 1
     ){
-        console.log({...newFormValues, sizesFound: sizesFoundValue, createdAt: createdAtValue, index: count})
         formType === 'add'
         ? handleAdd(setPage, setOrderByAttr, setOrderByType, setFilterByValues, {...newFormValues, sizesFound: sizesFoundValue, createdAt: createdAtValue, index: count})
         : handleEdit(setPage, setOrderByAttr, setOrderByType, setFilterByValues, {...newFormValues, sizesFound: sizesFoundValue, createdAt: createdAtValue, index: editValues?.id -1}, editValues?.docId)
-        // handleCloseAddEditForm(setShowAdd);
         formType === 'add' ? handleCloseAddEditForm(setShowAdd) : handleCloseAddEditForm(setShowEdit);
     }
 
@@ -285,90 +269,82 @@ const Products = () => {
   
   useEffect(()=>{    
     getProducts(setRowData, page, pageSize, orderByAttr, orderByType, filterByValues, setCount, count);
-    console.log('products length', page, orderByAttr, orderByType, filterByValues, count);
   },[page, orderByAttr, orderByType, filterByValues])
   
-
-  useEffect(() => {    
-    if( typeof window !== 'undefined' ){ setWindowListener(true); }
-  }, [windowListener])  
-
   
   return (
-    <>{
-      windowListener ? <>
-        <Head>
-          <meta name="og:title" content="Next | Abdo Store Dashboard - Products" />
-          <meta name="og:description" content="Abdo store dashboard products page to handle website products with full crud operations" />
-          <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Products, Crud, Create, Read, Update, Delete, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
-          <meta property='og:type' content='website' />
-          <meta property='og:image' content={images.products} />
-        </Head>
+    <>
+      <Head>
+        <meta name="og:title" content="Next | Abdo Store Dashboard - Products" />
+        <meta name="og:description" content="Abdo store dashboard products page to handle website products with full crud operations" />
+        <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Products, Crud, Create, Read, Update, Delete, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
+        <meta property='og:type' content='website' />
+        <meta property='og:image' content={images.products} />
+      </Head>
 
-        <div id='productsControls' className='flex items-center justify-between px-4'>
-        <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
-          <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        
-          <Breadcrumb.Item active className='!text-gray-400 text-sm font-medium'>Products</Breadcrumb.Item>
-        </Breadcrumb>
+      <div id='productsControls' className='flex items-center justify-between px-4'>
+      <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
+        <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        
+        <Breadcrumb.Item active className='!text-gray-400 text-sm font-medium'>Products</Breadcrumb.Item>
+      </Breadcrumb>
 
-        <FilterBox 
-          showSort={showSort}
-          setShowSort={setShowSort}
-          targetSort={targetSort}
-          SortOverlayModalChildren={hocs.SortOverlayModalChildren(setShowSort, setPage, setOrderByAttr, setOrderByType)}
-          showFilter={showFilter}
-          setShowFilter={setShowFilter}
-          targetFilter={targetFilter}
-          FilterOverlayModalChildren={hocs.FilterOverlayModalChildren(setShowFilter, setPage, setFilterByValues)} 
-          showAdd={showAdd}
-          setShowAdd={setShowAdd}
-          handleShowAdd={handleShowAdd}
-          AddEditDashboardModalChildren={hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowAdd, 'add-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'add', setCount, count)} 
-          resetProps={[[orderByAttr, orderByType, filterByValues], [setPage, setOrderByAttr, setOrderByType, setFilterByValues]]}
-        />
+      <FilterBox 
+        showSort={showSort}
+        setShowSort={setShowSort}
+        targetSort={targetSort}
+        SortOverlayModalChildren={hocs.SortOverlayModalChildren(setShowSort, setPage, setOrderByAttr, setOrderByType)}
+        showFilter={showFilter}
+        setShowFilter={setShowFilter}
+        targetFilter={targetFilter}
+        FilterOverlayModalChildren={hocs.FilterOverlayModalChildren(setShowFilter, setPage, setFilterByValues)} 
+        showAdd={showAdd}
+        setShowAdd={setShowAdd}
+        handleShowAdd={handleShowAdd}
+        AddEditDashboardModalChildren={hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowAdd, 'add-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'add', setCount, count)} 
+        resetProps={[[orderByAttr, orderByType, filterByValues], [setPage, setOrderByAttr, setOrderByType, setFilterByValues]]}
+      />
+      </div>
+
+      <div>
+        <DashboardModal show={showEdit} onHide={()=>setShowEdit(false)} modalId={'edit-product'} className='modal_vertical_scroll'>
+          {hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowEdit, 'edit-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'edit', null, null)}
+        </DashboardModal>
+      </div>
+
+      <div>
+        <DashboardModal show={showDelete} onHide={()=>setShowDelete(false)} modalId={'delete-product'}>        
+          {hocs.DeleteDashboardModalChildren(setShowDelete, setPage, 'delete-product', deleteValues?.name, deleteValues?.id)}
+        </DashboardModal>
+      </div>
+
+      <div>
+        <DashboardModal show={showDetails} onHide={()=>setShowDetails(false)} modalId={'details-product'} className='modal_vertical_scroll'>        
+          {hocs.DetailsDashboardModalChildren(setShowDetails, 'details-product', detailsValues)}
+        </DashboardModal>
+      </div>
+
+      <div className='flex flex-col justify-between gap-3 p-4 bg-gray-100 h-auto !relative !shadow-[inset_0_1px_1px_0_rgba(0,0,0,.1),inset_0_1px_2px_-1px_rgba(0,0,0,.1)]'>
+        <div className='ag-theme-quartz listing_table w-full h-[496px]'>
+          <AgGridReact 
+            rowData={rowData}
+            rowHeight={85}
+            columnDefs={colDefs}
+            suppressRowHoverHighlight={true}            
+          />
         </div>
 
-        <div>
-          <DashboardModal show={showEdit} onHide={()=>setShowEdit(false)} modalId={'edit-product'} className='modal_vertical_scroll'>
-            {hocs.AddEditDashboardModalChildren(formValues, setFormValues, handleCloseAddEditForm, handleChangeAddEditForm, handleSubmitAddEditForm, handelCheckAddEditForm, setShowEdit, 'edit-product', setPage, setOrderByAttr, setOrderByType, setFilterByValues, 'edit', null, null)}
-          </DashboardModal>
-        </div>
-
-        <div>
-          <DashboardModal show={showDelete} onHide={()=>setShowDelete(false)} modalId={'delete-product'}>        
-            {hocs.DeleteDashboardModalChildren(setShowDelete, setPage, 'delete-product', deleteValues?.name, deleteValues?.id)}
-          </DashboardModal>
-        </div>
-
-        <div>
-          <DashboardModal show={showDetails} onHide={()=>setShowDetails(false)} modalId={'details-product'} className='modal_vertical_scroll'>        
-            {hocs.DetailsDashboardModalChildren(setShowDetails, 'details-product', detailsValues)}
-          </DashboardModal>
-        </div>
-
-        <div className='flex flex-col justify-between gap-3 p-4 bg-gray-100 h-auto !relative !shadow-[inset_0_1px_1px_0_rgba(0,0,0,.1),inset_0_1px_2px_-1px_rgba(0,0,0,.1)]'>
-          <div className='ag-theme-quartz listing_table w-full h-[496px]'>
-            <AgGridReact 
-              rowData={rowData}
-              rowHeight={85}
-              columnDefs={colDefs}
-              suppressRowHoverHighlight={true}            
+        {count > pageSize && (
+          <div className="customPaginationWrap bg-asd_white border-t border-[#e5e7eb] rounded-b-lg">
+            <CustomPagination
+              count={Math.ceil(count / [pageSize])}
+              size="sm"
+              page={page}
+              handleChange={(value) => handlePageChange(value, setPage)}
             />
           </div>
-
-          {count > pageSize && (
-            <div className="customPaginationWrap bg-asd_white border-t border-[#e5e7eb] rounded-b-lg">
-              <CustomPagination
-                count={Math.ceil(count / [pageSize])}
-                size="sm"
-                page={page}
-                handleChange={(value) => handlePageChange(value, setPage)}
-              />
-            </div>
-          )}
-        </div>
-      </> : <></>
-    }</>
+        )}
+      </div>
+    </>
   )
 }
 

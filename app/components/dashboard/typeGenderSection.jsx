@@ -115,94 +115,105 @@ const TypeGenderSection = () => {
 
   const [rendered, setRendered] = useState(false);
   var apexChart = new ApexCharts(document.querySelector("#apex_charts_wrap_gender"), options);
+  // const [apexChart, setApexChart] = useState(new ApexCharts(document.querySelector("#apex_charts_wrap_gender"), options));  
+  // const [apexChart, setApexChart] = useState({});  
 
   const typeGenderToggleStyle = '!w-auto !text-xs !font-semibold uppercase border !rounded-md !border-asd_primary !bg-asd_white !text-asd_primary cursor-pointer';
   
   const typeGenderPriceProp = typeGenderToggle == 'gender' ? ['shirt', 'pant', 'shoes'] : ['female', 'men', 'twinz'];      
 
   useEffect(() => {
-    getAllProductsLength(setCountState);
-    getProductsTypeGenderLength(setCountState, null, 'men', 'men');
-    getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
+    if( typeof window !== 'undefined' && windowListener ){
+      // setApexChart(new ApexCharts(document.querySelector("#apex_charts_wrap_gender"), options));
 
-    getProductsTypeGenderLength(setCountState, null, 'female', 'female');
-    getProductsTypeGenderLength(setCountState, null, 'men', 'men');
-    getProductsTypeGenderLength(setCountState, null, 'twinz', 'twinz');      
+      getAllProductsLength(setCountState);
+      getProductsTypeGenderLength(setCountState, null, 'men', 'men');
+      getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
 
-    getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
-    getProductsTypeGenderLength(setCountState, 'pant', null, 'pant');
-    getProductsTypeGenderLength(setCountState, 'shoes', null, 'shoes');
+      getProductsTypeGenderLength(setCountState, null, 'female', 'female');
+      getProductsTypeGenderLength(setCountState, null, 'men', 'men');
+      getProductsTypeGenderLength(setCountState, null, 'twinz', 'twinz');      
 
-    getProductsTypeGenderLength(setCountState, 'shirt', 'female', 'shirt_female');
-    getProductsTypeGenderLength(setCountState, 'shirt', 'men', 'shirt_men');
-    getProductsTypeGenderLength(setCountState, 'shirt', 'twinz', 'shirt_twinz');      
+      getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
+      getProductsTypeGenderLength(setCountState, 'pant', null, 'pant');
+      getProductsTypeGenderLength(setCountState, 'shoes', null, 'shoes');
 
-    getProductsTypeGenderLength(setCountState, 'pant', 'female', 'pant_female');
-    getProductsTypeGenderLength(setCountState, 'pant', 'men', 'pant_men');
-    getProductsTypeGenderLength(setCountState, 'pant', 'twinz', 'pant_twinz');      
+      getProductsTypeGenderLength(setCountState, 'shirt', 'female', 'shirt_female');
+      getProductsTypeGenderLength(setCountState, 'shirt', 'men', 'shirt_men');
+      getProductsTypeGenderLength(setCountState, 'shirt', 'twinz', 'shirt_twinz');      
 
-    getProductsTypeGenderLength(setCountState, 'shoes', 'female', 'shoes_female');
-    getProductsTypeGenderLength(setCountState, 'shoes', 'men', 'shoes_men');
-    getProductsTypeGenderLength(setCountState, 'shoes', 'twinz', 'shoes_twinz');      
-  }, [])
+      getProductsTypeGenderLength(setCountState, 'pant', 'female', 'pant_female');
+      getProductsTypeGenderLength(setCountState, 'pant', 'men', 'pant_men');
+      getProductsTypeGenderLength(setCountState, 'pant', 'twinz', 'pant_twinz');      
+
+      getProductsTypeGenderLength(setCountState, 'shoes', 'female', 'shoes_female');
+      getProductsTypeGenderLength(setCountState, 'shoes', 'men', 'shoes_men');
+      getProductsTypeGenderLength(setCountState, 'shoes', 'twinz', 'shoes_twinz'); 
+    }
+  }, [windowListener])
   
   
   useEffect(() => {
-    setRendered(true);
-    apexChart = new ApexCharts(document.querySelector(`#apex_charts_wrap_${typeGenderToggle}`), options);
-    rendered && apexChart.render();
-  }, [rendered, typeGenderToggle])
+    if( typeof window !== 'undefined' && windowListener){
+      setRendered(true);
+      apexChart = new ApexCharts(document.querySelector(`#apex_charts_wrap_${typeGenderToggle}`), options);
+      // setApexChart(new ApexCharts(document.querySelector(`#apex_charts_wrap_${typeGenderToggle}`), options));
+      rendered && apexChart.render();
+    }
+  }, [rendered, typeGenderToggle, windowListener])
   
 
   useEffect(() => {  
-    if(typeGenderToggle == 'gender'){
-      apexChart?.updateOptions({
-        series: [
-          {
-            name: 'Women',
-            type: 'column',
-            data: [countState.shirt_female, countState.pant_female, countState.shoes_female]
-          },
-          {
-            name: "Men",
-            type: 'column',
-            data: [countState.shirt_men, countState.pant_men, countState.shoes_men]
-          },
-          {
-            name: "Twinz",
-            type: 'column',
-            data: [countState.shirt_twinz, countState.pant_twinz, countState.shoes_twinz]
+    if( typeof window !== 'undefined' && windowListener){
+      if(typeGenderToggle == 'gender'){
+        apexChart?.updateOptions({
+          series: [
+            {
+              name: 'Women',
+              type: 'column',
+              data: [countState.shirt_female, countState.pant_female, countState.shoes_female]
+            },
+            {
+              name: "Men",
+              type: 'column',
+              data: [countState.shirt_men, countState.pant_men, countState.shoes_men]
+            },
+            {
+              name: "Twinz",
+              type: 'column',
+              data: [countState.shirt_twinz, countState.pant_twinz, countState.shoes_twinz]
+            }
+          ],
+          xaxis: {
+            categories: ['Shirts', 'Pants', 'Shoes']
           }
-        ],
-        xaxis: {
-          categories: ['Shirts', 'Pants', 'Shoes']
-        }
-      })
-    }else{
-      apexChart?.updateOptions({
-        series: [
-          {
-            name: 'Shirts',
-            type: 'column',
-            data: [countState.shirt_female, countState.shirt_men, countState.shirt_twinz]
-          },
-          {
-            name: "Pants",
-            type: 'column',
-            data: [countState.pant_female, countState.pant_men, countState.pant_twinz]
-          },
-          {
-            name: "Shoes",
-            type: 'column',
-            data: [countState.shoes_female, countState.shoes_men, countState.shoes_twinz]
+        })
+      }else{
+        apexChart?.updateOptions({
+          series: [
+            {
+              name: 'Shirts',
+              type: 'column',
+              data: [countState.shirt_female, countState.shirt_men, countState.shirt_twinz]
+            },
+            {
+              name: "Pants",
+              type: 'column',
+              data: [countState.pant_female, countState.pant_men, countState.pant_twinz]
+            },
+            {
+              name: "Shoes",
+              type: 'column',
+              data: [countState.shoes_female, countState.shoes_men, countState.shoes_twinz]
+            }
+          ],
+          xaxis: {
+            categories: ['Women', 'Men', 'Twinz']
           }
-        ],
-        xaxis: {
-          categories: ['Women', 'Men', 'Twinz']
-        }
-      })
-    };
-  }, [typeGenderToggle, countState])
+        })
+      };
+    }
+  }, [typeGenderToggle, countState, windowListener])
 
   useEffect(() => {    
       if( typeof window !== 'undefined' ){ setWindowListener(true); }

@@ -10,7 +10,6 @@ export const handlePageChange = (value, setPage) => {
 export const getTotalCount = async(setCount, customQuery) => {
   const snapshot = await getCountFromServer(customQuery ? customQuery : collection(db, "Product Items"));
   setCount(snapshot?.data().count);
-  console.log('totalCount', snapshot?.data().count);
 }
 
 // handleResetFiltersSort : to reset filters & sort & get full pure data
@@ -92,14 +91,12 @@ export const getProducts = async (setRowData, page, pageSize, orderByAttr, order
     if(startAfterValue && page > 0){
       // condition because where filter by index || id not allow to filter by other and not need call handleClausesArray
       if(parseInt(filterByValues['index']) > 0){
-        console.log('878979');
         q = query(collection(db, "Product Items"), ...clausesArray, startAfter(startAfterValue), limit(pageSize));
       }else{          
         q = query(collection(db, "Product Items"), ...handleClausesArray(), startAfter(startAfterValue), limit(pageSize));
       }
     }else{
       if(parseInt(filterByValues['index']) > 0){
-        console.log('878979');
         q = query(collection(db, "Product Items"), ...clausesArray, limit(pageSize));
         setCount(pageSize);
       }else{

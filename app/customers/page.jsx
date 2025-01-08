@@ -21,7 +21,6 @@ import Head from 'next/head';
 
 const Customers = () => {
   const lightPStyle = 'm-0 text-sm text-gray-700 font-normal';
-  const [windowListener, setWindowListener] = useState(false);
 
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
@@ -80,18 +79,13 @@ const Customers = () => {
 
 
   useEffect(()=>{    
-    getCustomers(setRowData, page, pageSize, orderByAttr, orderByType, filterByValues, setCount);
-    // console.log('products length', page, orderByAttr, orderByType, filterByValues, count);
+    getCustomers(setRowData, page, pageSize, orderByAttr, orderByType, filterByValues, setCount);    
   },[page, orderByAttr, orderByType, filterByValues])    
 
 
-  useEffect(() => {    
-    if( typeof window !== 'undefined' ){ setWindowListener(true); }
-  }, [windowListener])  
   
   return (
-    <>{
-      windowListener ? <>
+      <>
         <Head>
           <meta name="og:title" content="Next | Abdo Store Dashboard - Customers" />
           <meta name="og:description" content="Abdo store dashboard customers page to view all website loged customers" />
@@ -146,8 +140,7 @@ const Customers = () => {
             </div>
           )}
         </div>
-      </> : <></>
-    }</>
+      </>
   )
 }
 

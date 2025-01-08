@@ -12,8 +12,10 @@ const CustomersSection = ({sectionClass, head, customerType}) => {
 
   const [customersList, setCustomersList] = useState([]);
   useEffect(() => {                    
-    customerType == 'oldest' ? getOldestCustomers(setCustomersList) : getLatestCustomers(setCustomersList);
-  }, [])
+    if( typeof window !== 'undefined' && windowListener ){
+        customerType == 'oldest' ? getOldestCustomers(setCustomersList) : getLatestCustomers(setCustomersList);
+    }
+  }, [windowListener])
 
   useEffect(() => {    
     if( typeof window !== 'undefined' ){ setWindowListener(true); }

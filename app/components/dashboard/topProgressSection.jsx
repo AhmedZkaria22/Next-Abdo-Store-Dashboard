@@ -17,10 +17,12 @@ const TopProgressSection = () => {
   })
     
   useEffect(() => {    
-    getAllProductsLength(setCountState);
-    getProductsTypeGenderLength(setCountState, null, 'men', 'men');
-    getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
-  }, [])
+    if( typeof window !== 'undefined' && windowListener ){
+      getAllProductsLength(setCountState);
+      getProductsTypeGenderLength(setCountState, null, 'men', 'men');
+      getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
+    }
+  }, [windowListener])
     
   useEffect(() => {    
     if( typeof window !== 'undefined' ){ setWindowListener(true); }

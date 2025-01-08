@@ -5,7 +5,6 @@ import { collection, getCountFromServer, getDocs, limit, orderBy, query, where }
 export const getAllProductsLength = async(setCountState) => {
   const snapshot = await getCountFromServer(collection(db, "Product Items"));
   setCountState(prev => ({...prev , products: snapshot?.data().count}));
-  // console.log(snapshot?.data().count);
 }
 
 
@@ -24,7 +23,6 @@ const handleClausesArray = (ProductType, ProductGender) => {
 export const getProductsTypeGenderLength = async(setCountState, ProductType, ProductGender, clause) => {
     const snapshot = await getCountFromServer(query(collection(db, "Product Items"), ...handleClausesArray(ProductType, ProductGender)));
     setCountState(prev => ({...prev , [clause]: snapshot?.data().count}));
-    // console.log(snapshot?.data().count, ProductType, ProductGender);
 }
 
 

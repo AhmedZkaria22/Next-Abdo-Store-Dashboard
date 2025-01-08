@@ -9,7 +9,7 @@ const TableImage = ({src, width, height, borderRadius, customClass}) => {
   const onImageLoad = () => {
     setLoading(false);
     setImageUrl(src);
-    console.log("loaded")
+    // console.log("loaded")
   }
 
   // const imageLoader = ({ src, width, quality }) => {
