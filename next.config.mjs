@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  webpack: (config) => {
+    config.resolve.fallback = { ssr: false };
+
+    return config;
+  },
   images: {
       remotePatterns: [
         {
