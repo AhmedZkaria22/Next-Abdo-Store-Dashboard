@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  webpack5: true,
   webpack: (config) => {
     config.resolve.fallback = { ssr: false };
 
@@ -33,7 +34,7 @@ const nextConfig = {
           pathname: '/wp-content/**',
         },
       ],
-    },
+  },
 };
 
 export default nextConfig;
