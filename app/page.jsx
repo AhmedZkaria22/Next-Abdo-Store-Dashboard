@@ -1,13 +1,11 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import './dashboard/dashboard.css'
 import { images } from './images/images'
-
-const DynamicCustomersSection = dynamic(() => import('./components/dashboard/CustomersSection'))
-const DynamicProgressSection = dynamic(() => import('./components/dashboard/ProgressSection'))
-const DynamicTypeGenderSection = dynamic(() => import('./components/dashboard/TypeGenderSection'))
-const DynamicTopProgressSection = dynamic(() => import('./components/dashboard/TopProgressSection'))
+import TopProgressSection from './components/dashboard/TopProgressSection'
+import TypeGenderSection from './components/dashboard/TypeGenderSection'
+import CustomersSection from './components/dashboard/CustomersSection'
+import ProgressSection from './components/dashboard/ProgressSection'
 
 const Dashboard = () => {  
   return (
@@ -21,18 +19,18 @@ const Dashboard = () => {
       </Head>
   
       <div className='flex flex-col justify-between gap-3 p-4 bg-gray-100 h-auto !relative !shadow-[inset_0_1px_1px_0_rgba(0,0,0,.1),inset_0_1px_2px_-1px_rgba(0,0,0,.1)]'>
-        <DynamicTopProgressSection />
+        <TopProgressSection />
   
-        <DynamicTypeGenderSection />
+        <TypeGenderSection />
         
         <article className='flex min-[1400px]:flex-row flex-col gap-3'>
-          <DynamicCustomersSection
+          <CustomersSection
             sectionClass='min-[1400px]:w-[21rem] w-full'
             head='Oldest Customers'
             customerType='oldest'
           />
   
-          <DynamicCustomersSection
+          <CustomersSection
             sectionClass='min-[1400px]:w-[-webkit-fill-available] w-full'
             head='Latest Customers'
             customerType='latest'
@@ -40,9 +38,9 @@ const Dashboard = () => {
         </article>
   
         <article className='grid gap-4   min-[1400px]:grid-cols-3 min-[1400px]:grid-rows-1   md:grid-cols-2 md:grid-rows-2   grid-cols-1 grid-rows-3 progress_boxes'>
-          <DynamicProgressSection ProgData={['Men', ['shirts', 'pants', 'shoes'], ['shirt_men', 'pant_men', 'shoes_men'], ['men']]} />
-          <DynamicProgressSection ProgData={['Female', ['shirts', 'pants', 'shoes'], ['shirt_female', 'pant_female', 'shoes_female'], ['female']]} />
-          <DynamicProgressSection ProgData={['Shirts', ['female', 'men', 'twinz'], ['shirt_female', 'shirt_men', 'shirt_twinz'], ['shirt']]} />         
+          <ProgressSection ProgData={['Men', ['shirts', 'pants', 'shoes'], ['shirt_men', 'pant_men', 'shoes_men'], ['men']]} />
+          <ProgressSection ProgData={['Female', ['shirts', 'pants', 'shoes'], ['shirt_female', 'pant_female', 'shoes_female'], ['female']]} />
+          <ProgressSection ProgData={['Shirts', ['female', 'men', 'twinz'], ['shirt_female', 'shirt_men', 'shirt_twinz'], ['shirt']]} />         
         </article>
       </div>
     </>
