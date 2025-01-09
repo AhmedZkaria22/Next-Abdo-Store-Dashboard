@@ -15,7 +15,7 @@ const CustomersSection = ({sectionClass, head, customerType}) => {
     if( typeof window !== 'undefined' && windowListener ){
         customerType == 'oldest' ? getOldestCustomers(setCustomersList) : getLatestCustomers(setCustomersList);
     }
-  }, [windowListener])
+  }, [windowListener, customerType])
 
   useEffect(() => {    
     if( typeof window !== 'undefined' ){ setWindowListener(true); }
