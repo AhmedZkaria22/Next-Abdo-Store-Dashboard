@@ -1,22 +1,21 @@
 'use client'
 
-import { AgGridReact } from 'ag-grid-react';
 import React, { useEffect, useRef, useState } from 'react'
+import Head from 'next/head';
 import { Breadcrumb, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Eye } from 'react-bootstrap-icons';
-import CustomPagination from '../components/listing/customPagination/customPagination';
+import { AgGridReact } from 'ag-grid-react';
+import CustomPagination from '@/components/listing/customPagination/customPagination';
+import FilterBox from '@/components/listing/filterBox/filterBox';
+import TableImage from '@/components/listing/tableImage';
+import DashboardModal from '@/components/modals/DashboardModal/DashboardModal';
 import { getCustomerCart, getCustomers } from './customersList';
+import { handlePageChange } from '../functions/listingFunctions';
 import hocs from './hocs';
-import FilterBox from '../components/listing/filterBox/filterBox';
-import TableImage from '../components/listing/tableImage';
 import dayjs from 'dayjs';
+import { images } from '@/app/images/images';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { handlePageChange } from '../functions/listingFunctions';
-import DashboardModal from '../components/modals/DashboardModal/DashboardModal';
-import { images } from '../images/images';
-import Head from 'next/head';
 
 
 const Customers = () => {

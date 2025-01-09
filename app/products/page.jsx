@@ -1,25 +1,23 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import Head from 'next/head';
+import { Breadcrumb, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Eye, PencilSquare, Trash3 } from 'react-bootstrap-icons';
 import { AgGridReact } from 'ag-grid-react';
+import TableImage from '@/components/listing/tableImage';
+import FilledSpanGroup from '@/components/listing/filledSpanGroup';
+import SizesGroup from '@/components/listing/sizesGroup';
+import CustomPagination from '@/components/listing/customPagination/customPagination';
+import FilterBox from '@/components/listing/filterBox/filterBox';
+import DashboardModal from '@/components/modals/DashboardModal/DashboardModal';
+import { getProducts, getTotalCount, handleAdd, handleEdit, handlePageChange } from './productsList';
+import dayjs from 'dayjs';
+import hocs from './hocs';
+import { images } from '@/app/images/images'
+import './products.css';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import TableImage from '../components/listing/tableImage';
-import FilledSpanGroup from '../components/listing/filledSpanGroup';
-import SizesGroup from '../components/listing/sizesGroup';
-import dayjs from 'dayjs';
-import { Breadcrumb, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import CustomPagination from '../components/listing/customPagination/customPagination';
-import { getProducts, getTotalCount, handleAdd, handleEdit, handlePageChange } from './productsList';
-import FilterBox from '../components/listing/filterBox/filterBox';
-import hocs from './hocs';
-import './products.css';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import DashboardModal from '../components/modals/DashboardModal/DashboardModal';
-import { Eye, PencilSquare, Trash3 } from 'react-bootstrap-icons';
-import Head from 'next/head';
-import { images } from '../images/images';
 
 
 const Products = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup, Card, Carousel, Col, Container, Dropdown, Form, ListGroup, ListGroupItem, Modal, Row } from 'react-bootstrap';
 import { handleDelete, handleFilter, handleSort } from './productsList';
-import FilledSpanGroup from '../components/listing/filledSpanGroup';
+import FilledSpanGroup from '@/components/listing/filledSpanGroup';
 
 const customLabelStyle = 'text-sm text-asd_black font-semibold capitalize';
 const customInputStyle = 'm-0 text-sm !text-gray-700/90 !bg-transparent !border-[#dee2e6] font-normal focus:!border-asd_primary focus:!text-gray-700/90 disabled:!bg-[#dee2e6] disabled:!opacity-50';

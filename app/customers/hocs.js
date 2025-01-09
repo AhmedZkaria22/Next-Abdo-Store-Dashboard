@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, ButtonGroup, Card, Col, Container, Form, Modal, Row } from 'react-bootstrap';
 
 import { handleFilter, handleSort } from '../functions/listingFunctions';
-import TableImage from '../components/listing/tableImage';
+import TableImage from '@/components/listing/tableImage';
 import './customers.css';
 
 const customLabelStyle = 'text-sm text-asd_black font-semibold capitalize';

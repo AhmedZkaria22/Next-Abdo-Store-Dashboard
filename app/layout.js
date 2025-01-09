@@ -1,9 +1,9 @@
 import localFont from "next/font/local";
-import "./globals.css";
-import DashNavbar from "./components/navbar/dashNavbar";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Sidebar from "./components/sidebar/sidebar";
+import DashNavbar from "@/components/navbar/dashNavbar";
+import Sidebar from "@/components/sidebar/sidebar";
 import { Col, Container, Row } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./globals.css";
 import "./general.css";
 
 const geistSans = localFont({
