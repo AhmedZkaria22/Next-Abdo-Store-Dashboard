@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
-import DashNavbar from "@/components/navbar/dashNavbar";
-import Sidebar from "@/components/sidebar/sidebar";
+import DashNavbar from "@/components/navbar/page";
+import Sidebar from "@/components/sidebar/page";
 import { Col, Container, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";

@@ -1,6 +1,6 @@
 'use client'
 import Pagination from 'react-bootstrap/Pagination';
-import './customPagination.css'
+import './styles.css'
 import { useEffect, useState } from 'react';
 
 const CustomPagination = ({count, size, page, handleChange}) => {  

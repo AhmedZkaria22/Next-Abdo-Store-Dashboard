@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap';
 import { Filter, Funnel, Plus, X } from 'react-bootstrap-icons'
-import OverlayModal from '../../modals/overlayModal/overlayModal';
 import { handleResetFiltersSort } from '@/app/products/productsList';
-import DashboardModal from '../../modals/DashboardModal/DashboardModal';
+import OverlayModal from '@/components/modals/overlayModal/page';
+import DashboardModal from '@/components/modals/dashboardModal/page';
 
 const FilterBox = ({
     showSort, setShowSort, targetSort, SortOverlayModalChildren,

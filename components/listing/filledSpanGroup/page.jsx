@@ -1,5 +1,5 @@
 import React from 'react'
-import FilledSpan from './filledSpan'
+import FilledSpan from '../filledSpan/page'
 
 const FilledSpanGroup = ({colors, direction, gap, spanWidth, spanHeight, spanRadius}) => {
   return (

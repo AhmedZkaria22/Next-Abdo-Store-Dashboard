@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
-import TableImage from '../listing/tableImage'
 import { icons } from '@/app/icons/icons'
-import CircleProgress from '../general/circleProgress'
 import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/dashboard/dashboard'
+import TableImage from '@/components/listing/tableImage/page'
+import CircleProgress from '@/components/general/circleProgress/page'
 
 const ProgressSection = ({ProgData}) => {
   const progressBoxStrokeColors = ['#f43f5e', '#22c55e', '#3b82f6'];

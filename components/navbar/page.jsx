@@ -1,11 +1,11 @@
 "use client";
 import React from 'react';
 import { Badge, Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { Bell, List } from 'react-bootstrap-icons';
 import { icons } from '@/app/icons/icons';
 import Image from 'next/image';
-import Sidebar from '../sidebar/sidebar';
-import { Bell, List } from 'react-bootstrap-icons';
-import './dashNavbar.css';
+import Sidebar from '../sidebar/page';
+import './styles.css';
 
 const DashNavbar = () => {
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, ButtonGroup, Card, Col, Container, Form, Modal, Row } from 'react-bootstrap';
 
 import { handleFilter, handleSort } from '../functions/listingFunctions';
-import TableImage from '@/components/listing/tableImage';
-import './customers.css';
+import TableImage from '@/components/listing/tableImage/page';
+import './styles.css';
 
 const customLabelStyle = 'text-sm text-asd_black font-semibold capitalize';
 const customInputStyle = 'm-0 text-sm !text-gray-700/90 !bg-transparent !border-[#dee2e6] font-normal focus:!border-asd_primary focus:!text-gray-700/90 disabled:!bg-[#dee2e6] disabled:!opacity-50';

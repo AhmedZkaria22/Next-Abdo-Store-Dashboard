@@ -5,17 +5,17 @@ import Head from 'next/head';
 import { Breadcrumb, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Eye, PencilSquare, Trash3 } from 'react-bootstrap-icons';
 import { AgGridReact } from 'ag-grid-react';
-import TableImage from '@/components/listing/tableImage';
-import FilledSpanGroup from '@/components/listing/filledSpanGroup';
-import SizesGroup from '@/components/listing/sizesGroup';
-import CustomPagination from '@/components/listing/customPagination/customPagination';
-import FilterBox from '@/components/listing/filterBox/filterBox';
-import DashboardModal from '@/components/modals/DashboardModal/DashboardModal';
+import TableImage from '@/components/listing/tableImage/page';
+import FilledSpanGroup from '@/components/listing/filledSpanGroup/page';
+import SizesGroup from '@/components/listing/sizesGroup/page';
+import FilterBox from '@/components/listing/filterBox/page';
+import DashboardModal from '@/components/modals/dashboardModal/page';
+import CustomPagination from '@/components/listing/customPagination/page';
 import { getProducts, getTotalCount, handleAdd, handleEdit, handlePageChange } from './productsList';
 import dayjs from 'dayjs';
 import hocs from './hocs';
 import { images } from '@/app/images/images'
-import './products.css';
+import './styles.css';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 

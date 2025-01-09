@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
-import TableImage from '../listing/tableImage'
+import TableImage from '@/components/listing/tableImage/page'
 import { getLatestCustomers, getOldestCustomers } from '@/app/dashboard/dashboard'
 
 const CustomersSection = ({sectionClass, head, customerType}) => {
