@@ -2,10 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-// import TopProgressSection from '@/components/dashboard/TopProgressSection'
-// import TypeGenderSection from '@/components/dashboard/TypeGenderSection'
-// import CustomersSection from '@/components/dashboard/CustomersSection'
-// import ProgressSection from '@/components/dashboard/ProgressSection'
 import TopProgressSection from '@/components/dashboard/topProgressSection/page'
 import TypeGenderSection from '@/components/dashboard/typeGenderSection/page'
 import CustomersSection from '@/components/dashboard/customersSection/page'
