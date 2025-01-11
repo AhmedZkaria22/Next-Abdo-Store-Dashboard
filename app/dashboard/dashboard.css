@@ -23,25 +23,28 @@
 }
 
 
-@media screen and (max-width: 330px) {
-    :is(#apex_charts_wrap_type, #apex_charts_wrap_gender) :is(.apexcharts-text tspan, .apexcharts-legend-text){
-        @apply !text-[8px];
-    }    
 
-    span.apexcharts-legend-marker{
-        @apply !w-2 !h-2
+@media screen and (max-width: 330px) {    
+    .dashboardBarChart :is(.recharts-text, .recharts-legend-item-text, .recharts-tooltip-wrapper){
+        @apply !text-[8px];
     }
-    span.apexcharts-legend-marker svg{
-        @apply !rounded-[50%]
+    .dashboardBarChart > .recharts-surface{
+        @apply !-ml-[10%]
     }
 }
 
 
 @media screen and (min-width: 330.1px) {
-    :is(#apex_charts_wrap_type, #apex_charts_wrap_gender) .apexcharts-text tspan{
+    .dashboardBarChart :is(.recharts-text, .recharts-legend-item-text, .recharts-tooltip-wrapper){
         @apply !text-[11px];
     }    
 }
+@media screen and (min-width: 330.1px) and (max-width: 425px) {
+    .dashboardBarChart > .recharts-surface{
+        @apply !-ml-[8%]
+    }
+}
+
 
 
 /* Handle mobile screen < 425 */
@@ -56,20 +59,41 @@
     }
     #typeGenderSection .card-header .btn-group{
         @apply max-[425px]:!m-0
-    }
+    }    
 
     #customersSection .customersSectionLatest .cardBodyRow{
         @apply max-[425px]:!w-[380px]
     }
 }
 
-:is(#apex_charts_wrap_type, #apex_charts_wrap_gender) .apexcharts-text tspan{
+
+.dashboardBarChart > .recharts-surface{
+    @apply -ml-[4%]
+}
+
+.dashboardBarChart .recharts-text{
     @apply uppercase;
 }
 
-:is(#apex_charts_wrap_type, #apex_charts_wrap_gender) .apexcharts-legend-text{
+.dashboardBarChart .recharts-legend-item-text{
     @apply !font-semibold
 }
+
+.dashboardBarChart :is(.recharts-default-legend, .recharts-legend-item){
+    @apply !flex !items-center !justify-center
+}
+
+.dashboardBarChart .recharts-default-legend{
+    @apply !gap-3
+}
+.dashboardBarChart .recharts-legend-item{
+    @apply !gap-1 !m-0 *:!m-0
+}
+
+.dashboardBarChart .recharts-tooltip-cursor{
+    @apply !opacity-50
+}
+
 
 .progress_boxes .circularProgressbar path:nth-of-type(1){
     @apply !stroke-[3px]

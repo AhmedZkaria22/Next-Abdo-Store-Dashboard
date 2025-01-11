@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Card, ProgressBar } from 'react-bootstrap'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
-import ApexCharts from 'apexcharts'
 import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/dashboard/dashboard'
+import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
 
 const TypeGenderSection = () => {
 
@@ -36,96 +37,51 @@ const TypeGenderSection = () => {
     shoes_twinz: 0,
   })
 
-  const options = {
-    chart: {
-      height: 350,
-      type: "bar",
-      foreColor: "#a0acbb",
-      toolbar: {
-        show: false
-      }
+  const [chartData, setChartData] = useState([
+    {
+      name: 'Women',
+      Shirts: 140,
+      Pants: 85,
+      Shoes: 80
     },
-    dataLabels: {
-      enabled: false
+    {
+      name: "Men",
+      Shirts: 90,
+      Pants: 120,
+      Shoes: 70
     },
-    colors: ['#f43f5e', '#22c55e', '#3b82f6'],
-    series: [      
-      {
-        name: 'Women',
-        type: 'column',
-        data: [140, 85, 80]
-      },
-      {
-        name: "Men",
-        type: 'column',
-        data: [90, 120, 70]
-      },
-      {
-        name: "Twinz",
-        type: 'column',
-        data: [50, 65, 90]
-      },
-    ],    
-    stroke: {
-      width: [0, 0, 0]
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '14px',
-        borderRadius: 10,
-        borderRadiusApplication: 'end',
-        borderRadiusWhenStacked: 'last',
-      }
-    },
-    xaxis: {
-      categories: ['Shirts', 'Pants', 'Shoes']
-    },
-    tooltip: {
-      shared: false,
-      intersect: true
-    },    
-    legend: {
-      horizontalAlign: "center",
-      offsetX: 0,
-      labels: {
-        colors: '#283c50',
-        fontWeight: 600
-      }
-    },
-    responsive: [{
-      breakpoint: 330,
-      options: {
-        plotOptions: {
-          bar: {
-            columnWidth: '8px',
-          }
-        }
-      }
-    },{
-      breakpoint: 300,
-      options: {
-        plotOptions: {
-          bar: {
-            columnWidth: '4px',
-          }
-        }
-      }
-    }]
-  };
+    {
+      name: "Twinz",
+      Shirts: 50,
+      Pants: 65,
+      Shoes: 90
+    }
+  ]);
 
-  const [rendered, setRendered] = useState(false);
-  var apexChart = new ApexCharts(document.querySelector("#apex_charts_wrap_gender"), options);
-  // const [apexChart, setApexChart] = useState(new ApexCharts(document.querySelector("#apex_charts_wrap_gender"), options));  
-  // const [apexChart, setApexChart] = useState({});  
+  const [chartBars, setChartBars] = useState(['Shirts', 'Pants', 'Shoes']);
 
   const typeGenderToggleStyle = '!w-auto !text-xs !font-semibold uppercase border !rounded-md !border-asd_primary !bg-asd_white !text-asd_primary cursor-pointer';
   
   const typeGenderPriceProp = typeGenderToggle == 'gender' ? ['shirt', 'pant', 'shoes'] : ['female', 'men', 'twinz'];      
 
+  const [barWidth, setBarWidth] = useState(14);
+
+
+  const handleResizeResponsiveContainer = () => {
+    const windowWidth = window.innerWidth;
+
+    if(windowWidth >= 300.1 && windowWidth <= 400){
+      setBarWidth(8);
+    }else if(windowWidth <= 300){
+      setBarWidth(4);
+    }else{
+      setBarWidth(14);
+    }
+  }
+
+
   useEffect(() => {
     if( typeof window !== 'undefined' && windowListener ){
-      // setApexChart(new ApexCharts(document.querySelector("#apex_charts_wrap_gender"), options));
-
       getAllProductsLength(setCountState);
       getProductsTypeGenderLength(setCountState, null, 'men', 'men');
       getProductsTypeGenderLength(setCountState, 'shirt', null, 'shirt');
@@ -153,72 +109,60 @@ const TypeGenderSection = () => {
   }, [windowListener])
   
   
-  useEffect(() => {
-    if( typeof window !== 'undefined' && windowListener){
-      setRendered(true);
-      apexChart = new ApexCharts(document.querySelector(`#apex_charts_wrap_${typeGenderToggle}`), options);
-      // setApexChart(new ApexCharts(document.querySelector(`#apex_charts_wrap_${typeGenderToggle}`), options));
-      rendered && apexChart.render();
-    }
-  }, [rendered, typeGenderToggle, windowListener])
-  
-
   useEffect(() => {  
     if( typeof window !== 'undefined' && windowListener){
       if(typeGenderToggle == 'gender'){
-        apexChart?.updateOptions({
-          series: [
-            {
-              name: 'Women',
-              type: 'column',
-              data: [countState.shirt_female, countState.pant_female, countState.shoes_female]
-            },
-            {
-              name: "Men",
-              type: 'column',
-              data: [countState.shirt_men, countState.pant_men, countState.shoes_men]
-            },
-            {
-              name: "Twinz",
-              type: 'column',
-              data: [countState.shirt_twinz, countState.pant_twinz, countState.shoes_twinz]
-            }
-          ],
-          xaxis: {
-            categories: ['Shirts', 'Pants', 'Shoes']
-          }
-        })
+        setChartData([
+          {
+            name: 'Women',
+            Shirts: countState.shirt_female,
+            Pants: countState.pant_female,
+            Shoes: countState.shoes_female
+          },
+          {
+            name: "Men",
+            Shirts: countState.shirt_men,
+            Pants: countState.pant_men,
+            Shoes: countState.shoes_men
+          },
+          {
+            name: "Twinz",
+            Shirts: countState.shirt_twinz,
+            Pants: countState.pant_twinz,
+            Shoes: countState.shoes_twinz
+          }      
+        ]);
+        setChartBars(['Shirts', 'Pants', 'Shoes']);
       }else{
-        apexChart?.updateOptions({
-          series: [
-            {
-              name: 'Shirts',
-              type: 'column',
-              data: [countState.shirt_female, countState.shirt_men, countState.shirt_twinz]
-            },
-            {
-              name: "Pants",
-              type: 'column',
-              data: [countState.pant_female, countState.pant_men, countState.pant_twinz]
-            },
-            {
-              name: "Shoes",
-              type: 'column',
-              data: [countState.shoes_female, countState.shoes_men, countState.shoes_twinz]
-            }
-          ],
-          xaxis: {
-            categories: ['Women', 'Men', 'Twinz']
-          }
-        })
+        setChartData([
+          {
+            name: 'Shirts',
+            Women: countState.shirt_female,
+            Men: countState.shirt_men,
+            Twinz: countState.shirt_twinz
+          },      
+          {
+            name: 'Pants',
+            Women: countState.pant_female,
+            Men: countState.pant_men,
+            Twinz: countState.pant_twinz
+          },      
+          {
+            name: 'Shoes',
+            Women: countState.shoes_female,
+            Men: countState.shoes_men,
+            Twinz: countState.shoes_twinz
+          },      
+        ]);
+        setChartBars(['Women', 'Men', 'Twinz']);
       };
     }
   }, [typeGenderToggle, countState, windowListener])
 
+
   useEffect(() => {    
       if( typeof window !== 'undefined' ){ setWindowListener(true); }
   }, [windowListener])  
-  
 
   return (
     <>{
@@ -236,9 +180,30 @@ const TypeGenderSection = () => {
           </ButtonGroup>
           <ThreeDotsVertical className='threeDotsVertical w-[15px] h-5 stroke-gray-500 hover:stroke-asd_primary cursor-pointer' />
         </Card.Header>
-        <Card.Body>
-          { typeGenderToggle == 'type' ?  <div id="apex_charts_wrap_type"></div> : <></> }
-          { typeGenderToggle == 'gender' ?  <div id="apex_charts_wrap_gender"></div> : <></> }
+        <Card.Body className='h-[350px]'>
+          <ResponsiveContainer width="100%" height="100%" onResize={handleResizeResponsiveContainer}>
+            <BarChart
+              width={500}
+              height={300}
+              data={chartData}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+              className='dashboardBarChart !w-full !max-w-full'
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend iconSize={10} />
+              <Bar dataKey={chartBars[0]} fill="#f43f5e" className='dashboardBarChartBarItem' barSize={barWidth} radius={[10, 10, 0, 0]} activeBar={<Rectangle fill="#f43f5e" stroke="#f43f5e" className='dashboardBarChartBarRect' width={barWidth} radius={[10, 10, 0, 0]} />} />
+              <Bar dataKey={chartBars[1]} fill="#22c55e" className='dashboardBarChartBarItem' barSize={barWidth} radius={[10, 10, 0, 0]} activeBar={<Rectangle fill="#22c55e" stroke="#22c55e" className='dashboardBarChartBarRect' width={barWidth} radius={[10, 10, 0, 0]} />} />
+              <Bar dataKey={chartBars[2]} fill="#3b82f6" className='dashboardBarChartBarItem' barSize={barWidth} radius={[10, 10, 0, 0]} activeBar={<Rectangle fill="#3b82f6" stroke="#3b82f6" className='dashboardBarChartBarRect' width={barWidth} radius={[10, 10, 0, 0]} />} />
+            </BarChart>
+          </ResponsiveContainer>
         </Card.Body>
         <Card.Footer className='!bg-transparent !p-5 !border-[#e5e7eb] grid gap-4   lg:grid-cols-4 lg:grid-rows-1   grid-cols-1 grid-rows-3'>
             {
