@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import Head from 'next/head';
 import { Breadcrumb, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Eye } from 'react-bootstrap-icons';
 import { AgGridReact } from 'ag-grid-react';
@@ -13,7 +12,6 @@ import { getCustomerCart, getCustomers } from './customersList';
 import { handlePageChange } from '../functions/listingFunctions';
 import hocs from './hocs';
 import dayjs from 'dayjs';
-import { images } from '@/app/images/images';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 
@@ -85,14 +83,6 @@ const Customers = () => {
   
   return (
       <>
-        <Head>
-          <meta name="og:title" content="Next | Abdo Store Dashboard - Customers" />
-          <meta name="og:description" content="Abdo store dashboard customers page to view all website loged customers" />
-          <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Customers, loged in, Authentication, Read, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
-          <meta property='og:type' content='website' />
-          <meta property='og:image' content={images.customers} />
-        </Head>
-
         <div className='flex items-center justify-between px-4'>
         <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
           <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        

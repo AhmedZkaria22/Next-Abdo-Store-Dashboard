@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import Head from 'next/head';
 import { Breadcrumb, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Eye, PencilSquare, Trash3 } from 'react-bootstrap-icons';
 import { AgGridReact } from 'ag-grid-react';
@@ -14,7 +13,6 @@ import CustomPagination from '@/components/listing/customPagination/page';
 import { getProducts, getTotalCount, handleAdd, handleEdit, handlePageChange } from './productsList';
 import dayjs from 'dayjs';
 import hocs from './hocs';
-import { images } from '@/app/images/images'
 import './styles.css';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
@@ -272,14 +270,6 @@ const Products = () => {
   
   return (
     <>
-      <Head>
-        <meta name="og:title" content="Next | Abdo Store Dashboard - Products" />
-        <meta name="og:description" content="Abdo store dashboard products page to handle website products with full crud operations" />
-        <meta name="og:keywords" content="Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Products, Crud, Create, Read, Update, Delete, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap" />
-        <meta property='og:type' content='website' />
-        <meta property='og:image' content={images.products} />
-      </Head>
-
       <div id='productsControls' className='flex items-center justify-between px-4'>
       <Breadcrumb className='flex bg-asd_white m-0 asd_breadcrumb !w-44 flex-nowrap'>
         <Breadcrumb.Item href="/" className='!text-asd_black hover:!text-blue-600 text-sm font-medium'>Home</Breadcrumb.Item>        
