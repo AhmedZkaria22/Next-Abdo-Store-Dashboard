@@ -5,7 +5,7 @@ import TopProgressSection from '@/components/dashboard/topProgressSection/page'
 import TypeGenderSection from '@/components/dashboard/typeGenderSection/page'
 import CustomersSection from '@/components/dashboard/customersSection/page'
 import ProgressSection from '@/components/dashboard/progressSection/page'
-import '@/app/dashboard/dashboard.css'
+import './dashboard.css'
 
 const Dashboard = () => {  
 

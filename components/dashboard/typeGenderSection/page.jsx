@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Card, ProgressBar } from 'react-bootstrap'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
-import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/dashboard/dashboard'
+import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/(dashboard)/dashboard'
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 

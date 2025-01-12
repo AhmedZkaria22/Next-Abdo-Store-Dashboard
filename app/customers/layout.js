@@ -9,7 +9,8 @@ export const metadata = {
     description: "Abdo store dashboard customers page to view all website loged customers",
     keywords: "Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Customers, loged in, Authentication, Read, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap",
     type: 'website',
-    image: images.customers
+    images: `https://abdo-store-dashboard.vercel.app${images.customers.src}`,
+    twitterImages: `https://abdo-store-dashboard.vercel.app${images.customers.src}`
   }
 };
 

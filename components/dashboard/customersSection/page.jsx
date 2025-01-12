@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
 import TableImage from '@/components/listing/tableImage/page'
-import { getLatestCustomers, getOldestCustomers } from '@/app/dashboard/dashboard'
+import { getLatestCustomers, getOldestCustomers } from '@/app/(dashboard)/dashboard'
 
 const CustomersSection = ({sectionClass, head, customerType}) => {
   const customerImageAlt = 'https://wphtml.com/html/tf/duralux-demo/assets/images/avatar/1.png';

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
 import { icons } from '@/app/icons/icons'
-import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/dashboard/dashboard'
+import { getAllProductsLength, getProductsTypeGenderLength } from '@/app/(dashboard)/dashboard'
 import TableImage from '@/components/listing/tableImage/page'
 import CircleProgress from '@/components/general/circleProgress/page'
 

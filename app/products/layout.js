@@ -8,7 +8,8 @@ export const metadata = {
     description: "Abdo store dashboard products page to handle website products with full crud operations",
     keywords: "Abdo store dashboard, Abdo store ecommerce, Abdo store website, Dashboard, Website, Ecommerce, Abdo store, Products, Crud, Create, Read, Update, Delete, Shirts, Pants, Shoes, Women, Men, Twinz, Filter, Sort, Nextjs, Reactjs, Tailwind, Tailwindcss, React-bootstrap",
     type: "website",
-    image: images.products,
+    images: `https://abdo-store-dashboard.vercel.app${images.products.src}`,
+    twitterImages: `https://abdo-store-dashboard.vercel.app${images.products.src}`
   }
 };
 
